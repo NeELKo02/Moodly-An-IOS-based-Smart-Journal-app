@@ -9,7 +9,6 @@ SmartJournal/
 ├── README.md                          # This file
 ├── SmartJournal.xcodeproj/            # Xcode project
 ├── SmartJournal/                      # iOS app source code
-├── SmartJournal Watch App/            # Apple Watch app
 ├── SmartJournalTests/                 # Unit tests
 ├── SmartJournalUITests/               # UI tests
 ├── SmartJournalSentiment.mlpackage/   # CoreML model
@@ -81,7 +80,6 @@ If you want to retrain the emotion detection model:
 - **92% Accuracy Emotion Detection** using custom CoreML model
 - **Privacy-First Architecture** with AES-GCM encryption
 - **Real-time Sentiment Analysis** as you type
-- **Apple Watch Integration** for quick mood logging
 - **HealthKit Integration** for wellness tracking
 - **Encrypted Local Storage** with CoreData
 - **Multi-language Support** (9 languages)
@@ -107,7 +105,6 @@ If you want to retrain the emotion detection model:
 - **CoreData** - Local database with encryption
 - **Natural Language** - Apple's NLP framework
 - **CryptoKit** - AES-GCM encryption
-- **WatchConnectivity** - Apple Watch integration
 - **HealthKit** - Wellness data integration
 
 ### Model Performance
@@ -124,7 +121,6 @@ If you want to retrain the emotion detection model:
 - **CustomSentimentAnalyzer** - CoreML model integration and enhanced NLP
 - **CoreDataManager** - Encrypted local storage management
 - **EncryptedCoreDataManager** - AES-GCM encryption and file operations
-- **WatchConnectivityManager** - Apple Watch integration for quick mood logging
 
 ### Data Models
 - **JournalEntry** - CoreData model for encrypted journal entries
