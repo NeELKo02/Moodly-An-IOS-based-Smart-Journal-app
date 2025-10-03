@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartJournal Watch App Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .watch-preview {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .watch-mockup {
+            background: #000;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .watch-mockup::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -8px;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 60px;
+            background: #333;
+            border-radius: 8px;
+        }
+        
+        .watch-screen {
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .watch-screen::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+        }
+        
+        .watch-content {
+            padding: 16px;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .watch-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .watch-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .watch-subtitle {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .mood-button {
+            background: #333;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .mood-button:hover {
+            background: #444;
+        }
+        
+        .mood-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .mood-text {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .stats-container {
+            background: #333;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-icon {
+            font-size: 12px;
+            margin-bottom: 4px;
+            display: block;
+        }
+        
+        .stat-value {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            color: #999;
+        }
+        
+        .connection-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 10px;
+            color: #999;
+        }
+        
+        .connection-icon {
+            color: #4CAF50;
+        }
+        
+        /* Watch sizes */
+        .watch-45mm {
+            width: 180px;
+            height: 220px;
+        }
+        
+        .watch-41mm {
+            width: 140px;
+            height: 180px;
+        }
+        
+        .watch-45mm .watch-content {
+            font-size: 14px;
+        }
+        
+        .watch-41mm .watch-content {
+            font-size: 12px;
+        }
+        
+        .watch-41mm .mood-button {
+            padding: 12px;
+        }
+        
+        .watch-41mm .mood-icon {
+            font-size: 20px;
+        }
+        
+        .watch-41mm .stats-container {
+            padding: 8px;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .features h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .feature-content p {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .watch-preview {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SmartJournal Watch App</h1>
+            <p>Your wellness companion on your wrist</p>
+        </div>
+        
+        <div class="watch-preview">
+            <!-- Apple Watch Series 9 (45mm) -->
+            <div class="watch-mockup">
+                <div class="watch-screen watch-45mm">
+                    <div class="watch-content">
+                        <div class="watch-header">
+                            <div class="watch-title">SmartJournal</div>
+                            <div class="watch-subtitle">How are you feeling?</div>
+                        </div>
+                        
+                        <div class="mood-button">
+                            <span class="mood-icon">😊</span>
+                            <div class="mood-text">Log Mood</div>
+                        </div>
+                        
+                        <div class="stats-container">
+                            <div class="stats-row">
+                                <div class="stat-item">
+                                    <span class="stat-icon">📚</span>
+                                    <div class="stat-value">3</div>
+                                    <div class="stat-label">Entries</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-icon">😊</span>
+                                    <div class="stat-value">😊</div>
+                                    <div class="stat-label">Mood</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-status">
+                            <span class="connection-icon">📱</span>
+                            <span>Connected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apple Watch SE (41mm) -->
+            <div class="watch-mockup">
+                <div class="watch-screen watch-41mm">
+                    <div class="watch-content">
+                        <div class="watch-header">
+                            <div class="watch-title">SmartJournal</div>
+                            <div class="watch-subtitle">How are you feeling?</div>
+                        </div>
+                        
+                        <div class="mood-button">
+                            <span class="mood-icon">😊</span>
+                            <div class="mood-text">Log Mood</div>
+                        </div>
+                        
+                        <div class="stats-container">
+                            <div class="stats-row">
+                                <div class="stat-item">
+                                    <span class="stat-icon">📚</span>
+                                    <div class="stat-value">3</div>
+                                    <div class="stat-label">Entries</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-icon">😊</span>
+                                    <div class="stat-value">😊</div>
+                                    <div class="stat-label">Mood</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-status">
+                            <span class="connection-icon">📱</span>
+                            <span>Connected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h2>Watch App Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">😊</div>
+                    <div class="feature-content">
+                        <h3>Quick Mood Logging</h3>
+                        <p>Tap to log your mood on a 1-10 scale with intuitive emoji selection. Perfect for capturing your feelings throughout the day.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-content">
+                        <h3>Today's Stats</h3>
+                        <p>See your entry count and average mood at a glance. Track your wellness journey with beautiful, easy-to-read metrics.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-content">
+                        <h3>iPhone Sync</h3>
+                        <p>Seamlessly sync with your iPhone app using WatchConnectivity. Your mood data appears instantly across all devices.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">❤️</div>
+                    <div class="feature-content">
+                        <h3>Health Integration</h3>
+                        <p>Mood data automatically integrates with HealthKit, allowing you to correlate your emotional state with health metrics.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <div class="feature-content">
+                        <h3>Recent Entries</h3>
+                        <p>View your latest journal entries with mood indicators and timestamps. Perfect for quick reflection and review.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔔</div>
+                    <div class="feature-content">
+                        <h3>Smart Notifications</h3>
+                        <p>Receive gentle reminders to log your mood and wellness insights based on your patterns and preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2 style="margin-bottom: 20px;">Ready to start your wellness journey?</h2>
+            <a href="#" class="cta-button">Download SmartJournal</a>
+        </div>
+    </div>
+</body>
+</html>
