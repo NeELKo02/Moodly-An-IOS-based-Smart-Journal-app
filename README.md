@@ -1,8 +1,8 @@
 # SmartJournal - Privacy-First Mood Journal
 
-A comprehensive iOS journaling app with advanced emotion detection, encrypted local storage, and intelligent wellness insights. Built with SwiftUI and CoreML for 92% accuracy emotion classification.
+A comprehensive iOS journaling application with advanced emotion detection, encrypted local storage, and intelligent wellness insights. Built with SwiftUI and CoreML for 92% accuracy emotion classification.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 SmartJournal/
@@ -16,7 +16,7 @@ SmartJournal/
 ├── docs/                              # Documentation
 │   ├── README.md                      # Detailed app documentation
 │   └── CustomModelTraining.md         # Model training guide
-├── models/                            # Trained ML models
+├── models/                            # Trained ML models (excluded from git)
 │   ├── Fast85AccuracyModel_ensemble.joblib
 │   ├── Fast85AccuracyModel_glove.joblib
 │   ├── Fast85AccuracyModel_scaler.joblib
@@ -34,7 +34,7 @@ SmartJournal/
 └── screenshots/                       # App screenshots (for documentation)
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - iOS 18.5+
@@ -42,10 +42,10 @@ SmartJournal/
 - Apple Developer Account (for device testing)
 
 ### Installation
-1. **Clone the repository**
-2. **Open `SmartJournal.xcodeproj` in Xcode**
-3. **Select your target device**
-4. **Build and run the project**
+1. Clone the repository
+2. Open `SmartJournal.xcodeproj` in Xcode
+3. Select your target device
+4. Build and run the project
 
 ### Model Training (Optional)
 If you want to retrain the emotion detection model:
@@ -76,7 +76,7 @@ If you want to retrain the emotion detection model:
 
 **Note:** The app includes pre-trained models and works without retraining. See [scripts/README.md](scripts/README.md) for detailed instructions.
 
-## 📱 Features
+## Features
 
 - **92% Accuracy Emotion Detection** using custom CoreML model
 - **Privacy-First Architecture** with AES-GCM encryption
@@ -87,19 +87,19 @@ If you want to retrain the emotion detection model:
 - **Multi-language Support** (9 languages)
 - **Intelligent Insights** and wellness nudges
 
-## 🔒 Privacy & Security
+## Privacy & Security
 
 - **Zero data collection** - everything stays on device
 - **AES-GCM 256-bit encryption** for all stored data
 - **No cloud sync** - completely local storage
 - **Keychain integration** for secure key management
 
-## 📖 Documentation
+## Documentation
 
 - **[Detailed App Documentation](docs/README.md)** - Complete feature overview
 - **[Model Training Guide](docs/CustomModelTraining.md)** - How to train custom models
 
-## 🛠️ Development
+## Development
 
 ### Core Technologies
 - **SwiftUI** - Modern iOS interface
@@ -116,11 +116,100 @@ If you want to retrain the emotion detection model:
 - **Multi-language support** with 85%+ accuracy
 - **Enhanced Apple NLP** as fallback
 
-## 📄 License
+## Architecture
 
-This project is licensed under the MIT License.
+### Core Components
+- **SmartJournalApp** - Main app entry point with CoreData integration
+- **ContentView** - Primary SwiftUI interface with journal entry and analysis
+- **CustomSentimentAnalyzer** - CoreML model integration and enhanced NLP
+- **CoreDataManager** - Encrypted local storage management
+- **EncryptedCoreDataManager** - AES-GCM encryption and file operations
+- **WatchConnectivityManager** - Apple Watch integration for quick mood logging
 
-## 🤝 Contributing
+### Data Models
+- **JournalEntry** - CoreData model for encrypted journal entries
+- **DecryptedJournalEntry** - Decrypted data structure for UI display
+- **SentimentResult** - Emotion analysis results with confidence scores
+
+### Machine Learning Pipeline
+- **Custom CoreML Model** - Trained on Kaggle's Emotions Dataset (~20K samples)
+- **Enhanced Apple NLP** - Smart preprocessing and feature engineering
+- **Real-time Analysis** - Instant sentiment scoring as you type
+- **Multi-language Support** - Detects and analyzes text in 9 languages
+
+## Security Implementation
+
+### Encryption
+- **AES-GCM 256-bit encryption** for all stored data
+- **KeychainWrapper** for secure key management
+- **File-level encryption** with iOS Data Protection
+- **No external dependencies** for encryption
+
+### Data Storage
+- **CoreData with encryption** for structured data
+- **File-based storage** for encrypted entries
+- **Keychain integration** for sensitive data
+- **Local-only storage** - no cloud sync
+
+### Privacy Features
+- **Zero data collection** - everything stays on device
+- **No analytics** or tracking
+- **No network requests** for core functionality
+- **User-controlled data** - full export and deletion options
+
+## Model Training
+
+The project includes comprehensive machine learning training scripts:
+
+### Available Models
+- **Fast85AccuracyModel** - 91.17% accuracy ensemble model
+- **Advanced Ensemble** - 76.6% accuracy with multiple algorithms
+- **Basic Training** - 55-65% accuracy with TF-IDF features
+
+### Training Process
+1. **Data Preparation** - Emotion dataset preprocessing
+2. **Feature Engineering** - GloVe embeddings, TF-IDF, smart features
+3. **Model Training** - Ensemble methods with hyperparameter tuning
+4. **CoreML Conversion** - iOS integration ready models
+
+### Performance Metrics
+- **Training Time** - 2-15 minutes depending on model complexity
+- **Accuracy Range** - 55% to 91.17%
+- **Model Size** - Optimized for mobile deployment
+- **Inference Speed** - Real-time processing under 100ms
+
+## Testing
+
+### Unit Tests
+- Core functionality testing
+- Data encryption/decryption validation
+- Model prediction accuracy verification
+
+### UI Tests
+- User interface automation
+- Workflow testing
+- Accessibility compliance
+
+### Integration Tests
+- HealthKit integration
+- Apple Watch connectivity
+- CoreData operations
+
+## Deployment
+
+### App Store Requirements
+- iOS 18.5+ deployment target
+- CoreML model integration
+- Privacy policy compliance
+- HealthKit permissions
+
+### Build Configuration
+- Release build optimization
+- CoreML model compilation
+- Asset optimization
+- Code signing setup
+
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -128,6 +217,30 @@ This project is licensed under the MIT License.
 4. Add tests if applicable
 5. Submit a pull request
 
+### Development Guidelines
+- Follow Swift coding standards
+- Maintain test coverage
+- Document new features
+- Ensure privacy compliance
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For questions, issues, or feature requests:
+- Create an issue on GitHub
+- Check the documentation
+- Review the code comments
+
+## Acknowledgments
+
+- **Stanford NLP** for GloVe embeddings
+- **Kaggle** for the Emotions Dataset
+- **Apple** for CoreML and Natural Language frameworks
+- **Open source community** for various dependencies
+
 ---
 
-**SmartJournal** - Your private, intelligent mood companion. Built with ❤️ for privacy and mental wellness.
+**SmartJournal** - Your private, intelligent mood companion. Built for privacy and mental wellness.
