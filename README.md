@@ -2,6 +2,12 @@
 
 A comprehensive iOS journaling application with advanced emotion detection, encrypted local storage, and intelligent wellness insights. Built with SwiftUI and CoreML for 92% accuracy emotion classification.
 
+## Screenshots
+
+![Journal Home](assets/1.png)
+![Menu](assets/2.png)
+![Wellness Insights](assets/3.png)
+
 ## Project Structure
 
 ```
